@@ -1,6 +1,6 @@
 # syncbit
 
-Syncbit is an incredible website transfer toolkit written in golang which means there is no doubt it will be resource efficient, threaded and fast. This project was creation when I 
+Syncbit is an incredible website transfer toolkit written in golang which means there is no doubt it will be resource efficient, threaded and fast. This project was created when I 
 became frustrated with migration ~30 websites from one server to different servers. Doing the repeated task again and again was too overwhelming. So I decided to automate this with
 simple and human-readable config file.
 
