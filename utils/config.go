@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Settings is the type for holding application level config
 type Settings struct {
 	// Verbose will tell logger to show debug logs on stderr
 	Verbose bool `yaml:"verbose"`
@@ -13,6 +14,7 @@ type Settings struct {
 	Colors bool `yaml:"colors"`
 }
 
+// Adaptor is the type definition for connection adaptors
 type Adaptor struct {
 	// Name of the adaptor for reference
 	Name string `yaml:"name"`
@@ -26,6 +28,7 @@ type Adaptor struct {
 	Port int `yaml:"port"`
 }
 
+// Hooks type is used for global hooks
 type Hooks struct {
 	// PreBackup will be executed before zipping the directory on the source adaptor
 	PreBackup []string `yaml:"pre-backup"`
@@ -45,11 +48,13 @@ type Hooks struct {
 	PostRestore []string `yaml:"post-restore"`
 }
 
+// Global are the top level scope settings for handle transfer function
 type Global struct {
 	// Hooks are the actions to be performed on SSH session on particular event
 	Hooks Hooks `yaml:"hooks"`
 }
 
+// Src is the type definition for source directory
 type Src struct {
 	// Path is the directory for backup
 	Path string `yaml:"path"`
@@ -65,6 +70,7 @@ type Src struct {
 	PostDownload []string `yaml:"post-download"`
 }
 
+// Dest is the type definition for destination location
 type Dest struct {
 	// Path is the directory to restore
 	Path string `yaml:"path"`
@@ -80,6 +86,7 @@ type Dest struct {
 	PostRestore []string `yaml:"post-restore"`
 }
 
+// File is the type definition for backup files
 type File struct {
 	// Src config contains the details for the backup
 	Src Src `yaml:"src"`

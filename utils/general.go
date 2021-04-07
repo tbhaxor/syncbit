@@ -11,8 +11,10 @@ import (
 	"time"
 )
 
+// Log is the logger utility
 var Log = log.New(os.Stderr).WithTimestamp().WithoutColor()
 
+// SSHConnections is simplified type for ssh connections
 type SSHConnections map[string]*goph.Client
 
 // GetConfigFile manages to get the config file path using 3 different lookups
