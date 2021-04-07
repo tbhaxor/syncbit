@@ -68,10 +68,10 @@ func GetSSHConnections(conf Config) SSHConnections {
 				}
 
 				// create client with ssh key
-				Log.Debugf("Establishing connection for %s", adaptor.Name)
+				Log.Tracef("Establishing connection for %s", adaptor.Name)
 				if auth, err := goph.Key(adaptor.Pass, ""); err == nil {
 					if cl, err := goph.New(adaptor.User, adaptor.Host, auth); err == nil {
-						Log.Debugf("Connected to %s", adaptor.Name)
+						Log.Tracef("Connected to %s", adaptor.Name)
 						conn[adaptor.Name] = cl
 					} else {
 						// handle ssh connection failure
@@ -80,9 +80,9 @@ func GetSSHConnections(conf Config) SSHConnections {
 				}
 			} else {
 				// create client with password
-				Log.Debugf("Establishing connection for %s", adaptor.Name)
+				Log.Tracef("Establishing connection for %s", adaptor.Name)
 				if cl, err := goph.New(adaptor.User, adaptor.Host, goph.Password(adaptor.Pass)); err == nil {
-					Log.Debugf("Connected to %s", adaptor.Name)
+					Log.Tracef("Connected to %s", adaptor.Name)
 					conn[adaptor.Name] = cl
 				} else {
 					// handle ssh connection failure
@@ -100,9 +100,9 @@ func DisconnectSSHConnections(conn SSHConnections) {
 	Log.Info("Closing SSH Connection")
 	for n, cl := range conn {
 		if err := cl.Close(); err != nil {
-			Log.Debugf("Adaptor %s connection didn't close well, will do force close", n)
+			Log.Tracef("Adaptor %s connection didn't close well, will do force close", n)
 		} else {
-			Log.Debugf("Adaptor %s connection closed", n)
+			Log.Tracef("Adaptor %s connection closed", n)
 		}
 	}
 }

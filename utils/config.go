@@ -128,7 +128,7 @@ func (c *Config) validate(file string) {
 	if c.Settings.Verbose {
 		Log.WithDebug()
 	}
-	Log.Debug("Validating the config file")
+	Log.Trace("Validating the config file")
 
 	// exit when no adaptors are found
 	if len(c.Adaptors) == 0 {
@@ -139,17 +139,17 @@ func (c *Config) validate(file string) {
 	for _, adaptor := range c.Adaptors {
 		if len(adaptor.User) == 0 {
 			adaptor.User = "root"
-			Log.Debugf("Defaulting user 'root' for %s adaptor", adaptor.Name)
+			Log.Tracef("Defaulting user 'root' for %s adaptor", adaptor.Name)
 		}
 
 		if len(adaptor.Host) == 0 {
 			adaptor.Host = "localhost"
-			Log.Debugf("Defaulting host 'localhost' for %s adaptor", adaptor.Name)
+			Log.Tracef("Defaulting host 'localhost' for %s adaptor", adaptor.Name)
 		}
 
 		if adaptor.Port == 0 {
 			adaptor.Port = 22
-			Log.Debugf("Defaulting port '22' for %s adaptor", adaptor.Name)
+			Log.Tracef("Defaulting port '22' for %s adaptor", adaptor.Name)
 		}
 	}
 
