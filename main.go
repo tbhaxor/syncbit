@@ -9,7 +9,6 @@ import (
 	"sync"
 )
 
-
 // HandleTransfer is used to take backup, execute hooks and restore the zip file
 func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGroup, conf utils.Config) {
 	// when complete, mark it done
@@ -77,7 +76,6 @@ func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGro
 	}
 	utils.Log.Tracef("Completed scoped pre download hooks")
 
-
 	// download the file to local staging
 	srcZip := fmt.Sprintf("%s/dump.zip", file.Src.Path)
 	stagerName := utils.GetStagingFileName() + ".zip"
@@ -137,7 +135,7 @@ func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGro
 
 	utils.Log.Tracef("Uploading file from %s of local to %s@%s:/tmp/%s", destZip, adaptors[1].User, adaptors[1].Host, stagerName)
 	// upload file to temporary directory
-	if err := conn[file.Dest.Adaptor].Upload(destZip , fmt.Sprintf("/tmp/%s", stagerName)); err != nil {
+	if err := conn[file.Dest.Adaptor].Upload(destZip, fmt.Sprintf("/tmp/%s", stagerName)); err != nil {
 		utils.Log.Warnf("Skipping %s@%s:%s because uploading zip failed due to error: %s", adaptors[1].User, adaptors[1].Host, file.Dest.Path, err.Error())
 		return
 	}

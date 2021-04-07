@@ -138,7 +138,7 @@ func GetStagingFileName() string {
 func ChunkifyFiles(files []File, limit int) [][]File {
 	batches := make([][]File, 0)
 
-	min := func (a, b int) int {
+	min := func(a, b int) int {
 		if a <= b {
 			return a
 		}
