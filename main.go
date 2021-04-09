@@ -127,7 +127,7 @@ func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGro
 
 	utils.Log.Tracef("Executing scoped pre upload hooks")
 	for _, step := range file.Dest.PreUpload {
-		if _, err := conn[file.Dest.Adaptor].Run(fmt.Sprintf("cd %s && %s", file.Dest.Path, step)); err != nil {
+		if _, err := conn[file.Dest.Adaptor].Run(step); err != nil {
 			utils.Log.Tracef("Error while executing '%s' scoped pre upload hook. Error message: %s", step, err.Error())
 		}
 	}
@@ -151,7 +151,7 @@ func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGro
 
 	utils.Log.Tracef("Executing scoped post upload hooks")
 	for _, step := range file.Dest.PostUpload {
-		if _, err := conn[file.Dest.Adaptor].Run(fmt.Sprintf("cd %s && %s", file.Dest.Path, step)); err != nil {
+		if _, err := conn[file.Dest.Adaptor].Run(step); err != nil {
 			utils.Log.Tracef("Error while executing '%s' scoped post upload hook. Error message: %s", step, err.Error())
 		}
 	}
@@ -167,7 +167,7 @@ func HandleTransfer(file utils.File, conn utils.SSHConnections, wg *sync.WaitGro
 
 	utils.Log.Tracef("Executing scoped pre restore hooks")
 	for _, step := range file.Dest.PreRestore {
-		if _, err := conn[file.Dest.Adaptor].Run(fmt.Sprintf("cd %s && %s", file.Dest.Path, step)); err != nil {
+		if _, err := conn[file.Dest.Adaptor].Run(step); err != nil {
 			utils.Log.Tracef("Error while executing '%s' scoped pre restore hook. Error message: %s", step, err.Error())
 		}
 	}
